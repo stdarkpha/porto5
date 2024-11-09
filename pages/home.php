@@ -23,10 +23,10 @@
          </div>
       </div>
 
-      <div class="w-44 aspect-square relative rounded-full border-2 border-white flex flex-col items-center justify-center mt-auto">
+      <a href="#about"  class="w-44 aspect-square relative rounded-full border-2 hover:bg-white hover:text-slate-900 transition-all border-white flex flex-col items-center justify-center mt-auto">
          <p>Scroll Down</p>
          <iconify-icon class="absolute mt-16 animate-bounce" icon="iconamoon:arrow-down-2-fill"></iconify-icon>
-      </div>
+      </a>
    </div>
    <div class="absolute top-0 left-0 w-full h-full -z-[5] opacity-10 grayscale">
       <img class="w-full h-full object-cover" src="https://images.pexels.com/photos/936722/pexels-photo-936722.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="background" />
@@ -34,7 +34,7 @@
 </header>
 
 <!-- About Section -->
-<section class="py-24">
+<section id="about" class="py-24">
    <div>
       <img class="w-full h-auto" src="assets/about.svg" alt="" />
    </div>
@@ -43,9 +43,9 @@
          <h1 class="text-8xl font-bold">Farouq Mulya Al Simabua</h1>
          <p class="text-slate-300 text-xl mt-8 leading-loose">You can call me Far. As a highly skilled design, motion graphics, and web development professional, I bring <b>10 years</b> of diverse expertise to the table.</p>
       </div>
-      <div class="w-48 h-48 bg-slate-950 rounded-full justify-center items-center inline-flex">
+      <a href="about.php" class="w-48 h-48 bg-slate-950 hover:bg-orange-600 transition-all rounded-full justify-center items-center inline-flex">
          <div class="text-white text-xl font-medium">Read More</div>
-      </div>
+      </a>
    </div>
 </section>
 
@@ -53,9 +53,9 @@
 <section class="overflow-hidden">
    <div class="container mx-auto pt-24">
       <div class="relative flex items-center justify-start">
-         <h1 class="text-3xl font-medium">Recent Projects</h1>
+         <h1 class="text-3xl font-medium bg-slate-900 pr-12 z-[1]">Recent Projects</h1>
 
-         <div class="w-screen left-[16%] absolute h-0.5 bg-white"></div>
+         <div class="w-screen left-0 absolute h-0.5 bg-white"></div>
       </div>
       <div class="grid grid-cols-3 content-center">
          <div class="py-16">
@@ -101,24 +101,44 @@
             <h1 class="text-slate-900 text-6xl uppercase font-bold">My Experience through<br />time-in-Time</h1>
          </div>
       </div>
-      <?php for ($x = 1; $x <= 3; $x++) { ?>
-      <div class="grid gap-8 grid-cols-4 w-full group">
+      <?php
+         include './utils/connection.php';
+
+         $query = "SELECT * FROM experiences";
+         $result = mysqli_query($conn, $query);
+
+         if (mysqli_num_rows($result) > 0): ?>
+      
+      <?php 
+         $count = 0; 
+         while ($count < 3 && ($row = mysqli_fetch_assoc($result))) 
+         { 
+            $count++;
+            $start = DateTime::createFromFormat('Y-m-d', $row['start']);
+            $end = $row['end'] ? DateTime::createFromFormat('Y-m-d', $row['end']) : null;
+            
+      ?>
+      <a href="experience.php" class="grid gap-8 grid-cols-4 w-full group">
          <div class="relative">
             <img class="absolute top-0 left-0 scale-0 origin-top-left group-hover:scale-100 transition-all" src="https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Website" />
          </div>
          <div class="col-span-3 grid grid-cols-4 transition-all group-hover:bg-slate-200/50 border-slate-400 border-b p-4">
             <div>
-               <div class="text-slate-400 text-xl">March 2023 - Today</div>
+               <div class="text-slate-400 text-xl"><?= $start->format('Y F') . ' - ' . ($row['end'] ? $end->format('Y F') : 'Today') ?></div>
             </div>
-            <div class="col-span-3 flex flex-row items-center gap-8">
-               <div class="text-2xl">
+            <div class="col-span-3 flex flex-row items-center justify-between gap-8">
+               <div class="text-xl">
                   <div>
-                     <span class="font-semibold">IT Support & Programmer</span>
-                     <span class="text-slate-600"> - PT Jasnita Telekomindo, Tbk</span>
+                     <span class="font-semibold">
+                        <?= $row['role'] ?>
+                     </span>
+                     <span class="text-slate-600"> - 
+                        <?= $row['company'] ?>
+                     </span>
                   </div>
                   <div class="flex items-center text-orange-600 gap-4 text-xl mt-2">
                      <iconify-icon icon="typcn:location"></iconify-icon>
-                     South Jakarta, Jakarta, Indonesia
+                     <span><?= $row['location'] ?></span>
                   </div>
                </div>
                <div class="w-12 aspect-square rounded-full border-2 border-slate-200 transition-all group-hover:shadow-xl group-hover:bg-slate-900 group-hover:border-slate-900 group-hover:text-slate-200 text-slate-400 justify-center items-center flex">
@@ -126,18 +146,19 @@
                </div>
             </div>
          </div>
-      </div>
+      </a>
       <?php } ?>
+      <?php endif; ?>
       <div class="grid gap-8 grid-cols-4 my-8 w-full">
          <div class="relative"></div>
          <div class="col-span-3 grid grid-cols-4 p-4">
             <div class="flex items-start">
-               <div class="p-2 flex items-center gap-4 border-2 border-slate-400 rounded-full">
-                  <div class="w-10 aspect-square rounded-full flex items-center justify-center bg-slate-900">
-                     <iconify-icon class="text-white text-xl" icon="iconamoon:arrow-right-2-duotone"></iconify-icon>
+               <a href="experience.php" class="p-2 group flex hover:flex-row-reverse items-center gap-4 border-2 border-slate-400 hover:bg-slate-900 hover:border-transparent transition-all rounded-full">
+                  <div class="w-10 transition-all aspect-square rounded-full flex items-center justify-center group-hover:bg-zinc-100 bg-slate-900">
+                     <iconify-icon class="text-white group-hover:text-zinc-900 transition-all text-xl" icon="iconamoon:arrow-right-2-duotone"></iconify-icon>
                   </div>
-                  <p class="mr-3 text-xl text-slate-400">View More</p>
-               </div>
+                  <p class="mr-3 group-hover:ml-3 group-hover:mr-6 group-hover:text-white transition-all text-xl text-slate-400">View More</p>
+               </a>
             </div>
             <div class="col-span-3 flex flex-row items-center gap-8"></div>
          </div>
@@ -166,13 +187,13 @@
             </div>
          </div>
 
-         <div class="w-48 h-48 bg-slate-900 rounded-full justify-center items-center inline-flex">
-            <iconify-icon class="text-2xl text-white absolute translate-x-10 -translate-y-4" icon="iconamoon:arrow-top-right-2-fill"></iconify-icon>
-            <div class="text-white text-xl font-medium">
+         <a href="portofolio.php" class="w-48 h-48 bg-slate-900 group text-white transition-all hover:bg-slate-100 hover:shadow-xl hover:text-slate-900 rounded-full justify-center items-center inline-flex">
+            <iconify-icon style="animation-duration: 400ms !important;" class="text-2xl group-hover:animate-pulse absolute translate-x-10 -translate-y-4" icon="iconamoon:arrow-top-right-2-fill"></iconify-icon>
+            <div class= text-xl font-medium">
                View <br />
                Portofolio
             </div>
-         </div>
+         </a>
       </div>
    </div>
    <div class="pl-[10vw] my-8 w-full block overflow-hidden">

@@ -6,29 +6,30 @@ include '../../utils/connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the experience data from the POST request
     $start = $_POST['start'];
-    $end = isset($_POST['end']) ? $_POST['end'] : null;
+    $end = isset($_POST['end']) && $_POST['end'] !== '' ? $_POST['end'] : null;
     $role = $_POST['role'];
     $company = $_POST['company'];
+    $location = $_POST['location'];
     $desc = $_POST['desc'];
 
     $id = isset($_POST['id']) ? $_POST['id'] : null;
 
     if ($id === null) {
         // Prepare an SQL statement to insert the experience data into the database
-        $sql = "INSERT INTO experiences (start, end, role, company, `desc`) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO experiences (start, end, role, company, location,  `desc`) VALUES (?, ?, ?, ?, ?, ?)";
     } else {
         // Prepare an SQL statement to update the experience data in the database
-        $sql = "UPDATE experiences SET start = ?, end = ?, role = ?, company = ?, `desc` = ? WHERE id = ?";
+        $sql = "UPDATE experiences SET start = ?, end = ?, role = ?, company = ?, location = ?, `desc` = ? WHERE id = ?";
     }
 
     // Initialize a statement
     if ($stmt = $conn->prepare($sql)) {
         if ($id === null) {
             // Bind the experience data to the statement as parameters
-            $stmt->bind_param("sssss", $start, $end, $role, $company, $desc);
+            $stmt->bind_param("ssssss", $start, $end, $role, $company, $location, $desc);
         } else {
             // Bind the experience data and id to the statement as parameters
-            $stmt->bind_param("sssssi", $start, $end, $role, $company, $desc, $id);
+            $stmt->bind_param("ssssssi", $start, $end, $role, $company, $location, $desc, $id);
         }
 
         // Execute the statement
