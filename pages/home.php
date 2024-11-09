@@ -84,7 +84,7 @@
          </div>
       </div>
 
-      <div class="relative flex flex-col items-center overflow-hidden mt-24">
+      <div class="relative flex flex-col items-center mt-24">
          <h1 class="text-3xl font-medium">Completed Projects</h1>
 
          <h2 class="text-[600px] font-black mt-16 -mb-16 leading-[.75]">150+</h2>
@@ -93,7 +93,7 @@
 </section>
 
 <!-- Experience Section -->
-<section class="bg-slate-100 overflow-x-hidden text-slate-800">
+<section class="bg-slate-100 overflow-hidden text-slate-800">
    <div class="container mx-auto pt-24 relative">
       <div class="grid gap-8 grid-cols-4 w-full mb-16">
          <div class="text-slate-400 text-xl">Work-Experience</div>
@@ -106,7 +106,7 @@
          <div class="relative">
             <img class="absolute top-0 left-0 scale-0 origin-top-left group-hover:scale-100 transition-all" src="https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Website" />
          </div>
-         <div class="col-span-3 grid grid-cols-4 transition-all group-hover:bg-slate-200/50 group-hover:border-slate-400 border-b border-transparent p-4">
+         <div class="col-span-3 grid grid-cols-4 transition-all group-hover:bg-slate-200/50 border-slate-400 border-b p-4">
             <div>
                <div class="text-slate-400 text-xl">March 2023 - Today</div>
             </div>
@@ -116,7 +116,7 @@
                      <span class="font-semibold">IT Support & Programmer</span>
                      <span class="text-slate-600"> - PT Jasnita Telekomindo, Tbk</span>
                   </div>
-                  <div class="flex items-center text-slate-500 gap-4 text-xl mt-2">
+                  <div class="flex items-center text-orange-600 gap-4 text-xl mt-2">
                      <iconify-icon icon="typcn:location"></iconify-icon>
                      South Jakarta, Jakarta, Indonesia
                   </div>
@@ -205,14 +205,6 @@
       </div>
    </div>
    <div class="bg-orange-600 w-full h-1/2 bottom-0 left-0 content-[''] absolute -z-[1]"></div>
-</section>
-
-<section class="group h-[480px] flex items-center justify-center overflow-hidden relative">
-   <div class="absolute z-10 flex items-center justify-center">
-      <iconify-icon class="text-xl absolute" icon="heroicons:play-16-solid"></iconify-icon>
-      <img style="animation-duration: 20s" src="assets/reel.svg" class="w-48 animate-spin" alt="showreel" />
-   </div>
-   <img src="https://img.youtube.com/vi/Y5SZd3byu6M/maxresdefault.jpg" class="group-hover:scale-110 transition-all group-hover:brightness-75 w-full h-full object-cover" alt="iframe-youtube" />
 </section>
 
 <!-- Swiper JS -->

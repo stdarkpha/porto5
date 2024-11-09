@@ -1,3 +1,11 @@
+<section class="group h-[480px] flex items-center justify-center overflow-hidden relative">
+   <div class="absolute z-10 flex items-center justify-center">
+      <iconify-icon class="text-xl absolute" icon="heroicons:play-16-solid"></iconify-icon>
+      <img style="animation-duration: 20s" src="assets/reel.svg" class="w-48 animate-spin" alt="showreel" />
+   </div>
+   <img src="https://img.youtube.com/vi/Y5SZd3byu6M/maxresdefault.jpg" class="group-hover:scale-110 transition-all group-hover:brightness-75 w-full h-full object-cover" alt="iframe-youtube" />
+</section>
+
 <section class="bg-slate-900">
    <div class="container mx-auto py-24 flex items-center justify-between">
       <div>
